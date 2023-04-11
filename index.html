@@ -12,7 +12,7 @@
 <h1>The button Element</h1>
 
 <button type="button" onclick="alert('Hello world!')">Click Me!</button>
-    
+  <input type='button' id="button" value='Başla' onclick='startRecording();'>  
     <title>Ali Onur Geven'in kisisel web sitesi</title>
 </head>
 
@@ -30,5 +30,25 @@
 
     </div>
 </body>
+   <script>
+function startRecording(){ algila.start(); }
+var algila = new webkitSpeechRecognition();{
+algila.onresult = function(event) 
+{ for (var i = event.resultIndex; i < event.results.length; i++) 
+{if (event.results[i].isFinal) { neDedi = event.results[i][0].transcript;} }
+
+
+ document.getElementById("ARAMA").innerHTML="SAIT SISTEM ARAMA YAZILIMI = "+neDedi;
+document.getElementById("ANLASILAN").innerHTML=neDedi +".jpg" ;
+document.getElementById("ANLASILANIN SESI").innerHTML=neDedi +".wav" ;
+
+window.speechSynthesis.speak(new SpeechSynthesisUtterance('aradığınız parçanın adı' +neDedi));
+
+var image = document.getElementById("myImage");
+image.src = document.getElementById("ANLASILAN").innerHTML;
+
+}}
+</script> 
+    
 
 </html>
